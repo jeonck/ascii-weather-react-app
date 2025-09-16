@@ -36,7 +36,7 @@
 
 (기존 체크리스트에 아래 항목 추가)
 
-- **`vite.config.js` `base` 경로 불일치**: `settings.local.json`의 `projectName`이 실제 GitHub 저장소 이름과 다를 경우, 배포된 페이지가 정상적으로 로드되지 않습니다. **`projectName`이 저장소 이름과 정확히 일치하는지 반드시 확인해야 합니다.**
+- **GitHub Pages URL, 저장소 이름, `projectName`, `vite.config.js` `base` 경로 일치**: GitHub Pages 배포 시, 원하는 배포 URL(`https://<username>.github.io/<repository-name>/`)과 실제 GitHub 저장소 이름, `.gemini/settings.local.json`의 `projectName`, 그리고 `vite.config.js`의 `base` 경로가 **모두 정확히 일치해야 합니다.** 이 중 하나라도 불일치하면 404 오류 또는 흰 화면이 발생할 수 있습니다.
 - **GitHub Pages 배포 액션**: `peaceiris/actions-gh-pages` 대신 공식 GitHub Actions (`actions/configure-pages@v4`, `actions/upload-pages-artifact@v3`, `actions/deploy-pages@v4`) 사용을 권장합니다. 공식 액션은 GitHub Pages와의 통합이 더 원활하며, 최신 기능을 지원합니다.
 
 ## 🚀 Vite + React + Tailwind CSS 프로젝트 표준 (Universal Template)
