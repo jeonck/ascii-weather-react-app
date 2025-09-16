@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "github": {
+      "command": "npx",
+      "args": ["@modelcontextprotocol/server-github"],
+      "env": {
+        "GITHUB_TOKEN": "여기에_토큰_입력"
+      },
+      "timeout": 10000,
+      "trust": false
+    }
+  }
+}
