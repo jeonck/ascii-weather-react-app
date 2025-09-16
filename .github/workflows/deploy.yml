@@ -9,26 +9,40 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     permissions:
-      contents: write # peaceiris/actions-gh-pages needs this
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      contents: read
+      pages: write
+      id-token: write
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
         with:
           node-version: '18'
+          cache: 'npm'
+          cache-dependency-path: react-app/package-lock.json
 
-      - name: Install Dependencies
+      - name: Install dependencies
         working-directory: ./react-app
-        run: npm install
+        run: npm ci
 
       - name: Build
         working-directory: ./react-app
         run: npm run build
+        env:
+          NODE_ENV: production
 
-      - name: Deploy
-        uses: peaceiris/actions-gh-pages@v4
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./react-app/dist
+          path: ./react-app/dist
+
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v4
