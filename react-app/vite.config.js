@@ -5,18 +5,5 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [react()],
   base: '/ascii-weather-react-app/',
-  server: {
-    proxy: {
-      '/weather': {
-        target: 'https://wttr.in',
-        changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/weather/, ''),
-        configure: (proxy, options) => {
-          proxy.on('proxyReq', (proxyReq, req, res) => {
-            proxyReq.setHeader('User-Agent', 'curl');
-          });
-        },
-      },
-    },
-  },
+  
 })

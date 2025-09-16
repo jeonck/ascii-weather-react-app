@@ -8,7 +8,7 @@ function App() {
 
   const fetchWeather = async (loc) => {
     try {
-      const response = await fetch(`/weather/${loc}?T0&lang=ko`)
+      const response = await fetch(`https://wttr.in/${loc}?T0&lang=ko`)
       const text = await response.text()
       setWeather(text)
     } catch (error) {
